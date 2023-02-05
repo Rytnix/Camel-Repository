@@ -1,0 +1,5 @@
+sample/camel/entity/Employee.class
+sample/camel/route/RestRoute.class
+sample/camel/RestApplication.class
+sample/camel/component/Database.class
+sample/camel/Repository/EmployeeRepository.class
