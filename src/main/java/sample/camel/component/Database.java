@@ -6,14 +6,15 @@ import org.springframework.stereotype.Component;
 import sample.camel.Repository.EmployeeRepository;
 import sample.camel.entity.Employee;
 
+import javax.annotation.Resource;
 import java.util.Optional;
 
 @Component
 public class Database {
 
-//    @Resource
-    @Autowired
-EmployeeRepository employeeRepository;
+    //    @Resource
+    @Resource
+    EmployeeRepository employeeRepository;
 
 
     public Iterable<Employee> findAllEmployee() {
@@ -22,32 +23,31 @@ EmployeeRepository employeeRepository;
     }
 
     public Employee findEmployee(Long id) {
-        return employeeRepository.findById(id).get();
+        if(employeeRepository.findById(id).isPresent())
+            return employeeRepository.findById(id).get();
+        return new Employee();
     }
 
-    public String createEmployee(String name,
-                                 String l_name,
-                                 String mob_num,
-                                 String email_id,
-                                 String job_pos) {
+    public String createEmployee(String name, String l_name, String mob_num, String email_id, String job_pos) {
         Employee emp = new Employee();
-
         emp.setName(name);
         emp.setL_name(l_name);
         emp.setMob_num(mob_num);
         emp.setEmail_id(email_id);
         emp.setJob_pos(job_pos);
         employeeRepository.save(emp);
-        return "employee "+name+ " created";
+        return "employee " + name + " created" + " with id " + employeeRepository.findByName(name).getId();
     }
 
     public String updateEmployee(long emp_id,
-            String f_name,
-            String l_name,
-            String mob_num,
-            String email_id,
-            String job_pos) {
+                                 String f_name,
+                                 String l_name,
+                                 String mob_num,
+                                 String email_id,
+                                 String job_pos) {
         Optional<Employee> emp = employeeRepository.findById(emp_id);
+        if (!emp.isPresent())
+            return "Employee with id: " + " not found";
         if (f_name != null)
             emp.get().setName(f_name);
         if (l_name != null)
@@ -60,11 +60,10 @@ EmployeeRepository employeeRepository;
             emp.get().setJob_pos(job_pos);
         employeeRepository.save(emp.get());
         return "employee Updated";
-
     }
 
-    public String deleteEmploye(Long empId) {
+    public String deleteEmployee(Long empId) {
         employeeRepository.deleteById(empId);
-        return "Employee with id: "+empId+" Deleted";
+        return "Employee with id: " + empId + " Deleted";
     }
 }

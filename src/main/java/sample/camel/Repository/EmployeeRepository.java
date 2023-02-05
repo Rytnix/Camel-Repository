@@ -7,4 +7,5 @@ import sample.camel.entity.Employee;
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee,Long> {
 
+    Employee findByName(String name);
 }

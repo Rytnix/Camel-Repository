@@ -7,14 +7,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-	<groupId>org.apache.camel.springboot.example</groupId>
-	<artifactId>camel-rest</artifactId>
+	<groupId>org.project.camel</groupId>
+	<artifactId>camel-project</artifactId>
 	<version>1.0.0</version>
 
 
-	<name>Camel SB Examples :: Rest :: Producer</name>
-	<description>An example showing how to use Camel Rest to call a REST service</description>
-
+	<name>Camel CRUD</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -77,8 +75,6 @@
 			<version>1.18.26</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
-
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -95,16 +91,7 @@
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-jackson-starter</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.camel.springboot</groupId>
-			<artifactId>camel-swagger-java-starter</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.hibernate</groupId>
-					<artifactId>hibernate-validator</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-jpa-starter</artifactId>
